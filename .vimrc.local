@@ -69,6 +69,9 @@ endif
 " #############################################################
 " ##########  NERDTREE CUSTOMIZATION ##########################
 " #############################################################
+" See https://github.com/scrooloose/nerdtree
+" See https://github.com/scrooloose/nerdtree/issues/201#issuecomment-9954740
+
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -77,6 +80,7 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 " NERDTree File highlighting
+" WARNING! This highlighting may slow things down a lot
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
