@@ -37,3 +37,33 @@ let g:airline_powerline_fonts=1
      execute "set <F12>=\e[24;*~"
  endif
 " #############################################################
+
+
+" #######################################
+" ###### VIM TMUX NAVIGATOR CONFIG ######
+" #######################################
+let g:tmux_navigator_no_mappings = 1
+
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+" Key Mappings - Be sure to also match them in tmux config
+if $TMUX !=# ''
+  nnoremap <silent> <C-Left> :TmuxNavigateLeft<cr>
+  nnoremap <silent> <C-Down> :TmuxNavigateDown<cr>
+  nnoremap <silent> <C-Up> :TmuxNavigateUp<cr>
+  nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
+else
+  nnoremap <silent> <C-Left> <C-w>h
+  nnoremap <silent> <C-Up> <C-w>k
+  nnoremap <silent> <C-Down> <C-w>j
+  nnoremap <silent> <C-Right> <C-w>l
+endif
+
+" Autosave with g:tmux_navigator_save_on_switch options
+"    1	:update (write the current buffer, but only if changed)
+"    2	:wall (write all buffers before navigating from Vim to tmux pane)
+"let g:tmux_navigator_save_on_switch = 2
+" #############################################################
+
+
