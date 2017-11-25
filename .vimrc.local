@@ -1,10 +1,13 @@
-""" " #############################################################
-""" " ################ FIX TMUX ARROW KEY SUPPORT #################
-""" " #############################################################
-""" " From https://stackoverflow.com/questions/15445481/mapping-arrow-keys-when-running-tmux
-""" " NOTE: Must also add the following line to ~/.tmux.conf
-""" "       set-option -gw xterm-keys on
-""" "
+" Configure Airline
+let g:airline_powerline_fonts=1
+
+" #############################################################
+" ################ FIX TMUX ARROW KEY SUPPORT #################
+" #############################################################
+" From https://stackoverflow.com/questions/15445481/mapping-arrow-keys-when-running-tmux
+" NOTE: Must also add the following line to ~/.tmux.conf
+"       set-option -gw xterm-keys on
+"
  if &term =~ '^screen' && exists('$TMUX')
      set mouse+=a
      " tmux knows the extended mouse mode
@@ -33,4 +36,4 @@
      execute "set <F11>=\e[23;*~"
      execute "set <F12>=\e[24;*~"
  endif
-""" 
+" #############################################################
