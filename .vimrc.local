@@ -11,10 +11,26 @@
 """"" jj as another escape key alternative from insert mode
 inoremap jj <ESC>
 
+" ###########################################
+" ################ TAB KEYS #################
+" ###########################################
+nnoremap <silent> <C-S-Left> :tabprev<CR>
+nnoremap <silent> <C-S-Right> :tabnext<CR>
+nnoremap <silent> <C-S-Up> :tabm +1<CR>
+nnoremap <silent> <C-S-Down> :tabm -1<CR>
+""" Or can use UP/DOWN to navigate to first/last tab
+"nnoremap <silent> <C-S-Up> :tabfirst<CR>
+"nnoremap <silent> <C-S-Down> :tablast<CR>
+""" Tab close probably not needed
+" nnoremap tq  :tabclose<CR>
+""" But buffer management might be nice
+"nnoremap tr  ???? Show Prev Buffer in Tab ????
+"nnoremap ty  ???? Show Next Buffer in Tab ????
+"nnoremap tt  ???? New Tab ????
 
-" ###############################################
-" ################ KEY MAPPINGS #################
-" ###############################################
+" ##########################################
+" ################ AIRLINE #################
+" ##########################################
 " Configure Airline
 " See https://github.com/vim-airline/vim-airline
 
