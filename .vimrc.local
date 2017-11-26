@@ -88,6 +88,10 @@ endif
 " See https://github.com/scrooloose/nerdtree
 " See https://github.com/scrooloose/nerdtree/issues/201#issuecomment-9954740
 
+" Close after opening a file from NerdTree
+" let NERDTreeQuitOnOpen = 1
+let NERDTreeQuitOnOpen = 0
+
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
