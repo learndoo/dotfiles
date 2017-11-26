@@ -14,9 +14,6 @@ inoremap jj <ESC>
 " Enable airline
 let g:airline_powerline_fonts=1
 
-" Make it look exactly like Powerline
-let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
-
 " Speed 
 let ttimeoutlen = 10
 
