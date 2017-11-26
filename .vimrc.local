@@ -1,5 +1,24 @@
+" ###############################################
+" ################ KEY MAPPINGS #################
+" ###############################################
+""""" jj as another escape key alternative from insert mode
+inoremap jj <ESC>
+
+
+" ###############################################
+" ################ KEY MAPPINGS #################
+" ###############################################
 " Configure Airline
+" See https://github.com/vim-airline/vim-airline
+
+" Enable airline
 let g:airline_powerline_fonts=1
+
+" Make it look exactly like Powerline
+let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+
+" Speed 
+let ttimeoutlen = 10
 
 " #############################################################
 " ################ FIX TMUX ARROW KEY SUPPORT #################
