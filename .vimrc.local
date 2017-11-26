@@ -19,12 +19,7 @@ nnoremap <silent> <C-S-Left> :tabprev<CR>
 nnoremap <silent> <C-S-Right> :tabnext<CR>
 nnoremap <silent> <C-S-Up> :tabm +1<CR>
 nnoremap <silent> <C-S-Down> :tabm -1<CR>
-""" Or can use UP/DOWN to navigate to first/last tab
-"nnoremap <silent> <C-S-Up> :tabfirst<CR>
-"nnoremap <silent> <C-S-Down> :tablast<CR>
-""" Tab close probably not needed
-" nnoremap <silent> tq  :tabclose<CR>
-""" But buffer management might be nice
+""" Buffer management might be nice
 "nnoremap <silent> tr  ???? Show Prev Buffer in Tab ????
 "nnoremap <silent> ty  ???? Show Next Buffer in Tab ????
 
