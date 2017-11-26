@@ -15,7 +15,7 @@ inoremap jj <ESC>
 let g:airline_powerline_fonts=1
 
 " Speed 
-let ttimeoutlen = 10
+let ttimeoutlen = 5
 
 " #############################################################
 " ################ FIX TMUX ARROW KEY SUPPORT #################
