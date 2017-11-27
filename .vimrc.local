@@ -12,16 +12,20 @@
 inoremap jj <ESC>
 
 " ###########################################
-" ################ TAB KEYS #################
+" ########## TAB AND BUFFER KEYS ############
 " ###########################################
+" Tab Management
 nnoremap <silent> tt  :tabnew<CR>
 nnoremap <silent> <C-S-Left> :tabprev<CR>
 nnoremap <silent> <C-S-Right> :tabnext<CR>
 nnoremap <silent> <C-S-Up> :tabm +1<CR>
 nnoremap <silent> <C-S-Down> :tabm -1<CR>
-""" Buffer management might be nice
-"nnoremap <silent> tr  ???? Show Prev Buffer in Tab ????
-"nnoremap <silent> ty  ???? Show Next Buffer in Tab ????
+""" Buffer management
+"F5 for a numbered list of file names. Type buffer number and enter.
+:nnoremap <F5> :buffers<CR>:buffer<Space>
+"Cycle Buffers in the Current Tab or view
+nnoremap <silent> tr :bprevious<CR>
+nnoremap <silent> ty :bnext<CR>
 
 " ##########################################
 " ################ AIRLINE #################
