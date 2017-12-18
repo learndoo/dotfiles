@@ -1,0 +1,143 @@
+# ~/.gitconfig 
+# Use ~/.../this-project/.gitconfig to override at project level
+# Borrowed heavily from michaelwales.com/articles/make-gitconfig-work-for-you/
+
+#####################################################
+########## PERSONALIZATION REQUIRED #################
+#####################################################
+# Default user information
+[user]
+#    name = <username>
+#    email = <email>
+
+[http]
+#proxy = http://<corporate.proxy.com>:<port>
+[https]
+#proxy = http://<corporate.proxy.com>:<port>
+
+# Or from command line
+# git config --global http.proxy  http://proxyuser:proxypwd@proxy.server.com:8080
+# git config --global https.proxy https://proxyuser:proxypwd@proxy.server.com:8080
+
+[credential]
+    #helper = osxkeychain #Mac
+    #helper = manager     #Windows - Assumes installed MS Git Credential Manager for Windows
+
+# Adjust per platform, or use default
+[core]
+
+    # General case (trust your editors to manage the line endings)
+    autocrlf = false
+  	safecrlf = true
+
+    # USE THESE FOR *NIX/MAC (even if from Windows command line)
+    #autocrlf = input  #Unix/Mac - "input" will change CRLF to LF when you commit
+    #safecrlf = true   #Unix/Mac
+
+    # USE THESE FOR WINDOWS and GITBASH WINDOWS
+    #autocrlf = true   #Windows - "true" will change LF to CRLF when you checkout
+    #safecrlf = true   #Windows
+
+###################################################################
+########## PLATFORM AND USER INDEPENDENT SETTINGS #################
+###################################################################
+[alias]
+  # Show all my configured aliases... $ git aliases
+    aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+  # Formatted git history... $ git hist
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  # Add and remove all changes, note how this alias is calling another alias
+    addremove = !git r && git add . --all
+  # Add all... $ git all
+    all = add . --all
+  # For when you made that commit a bit too early, amend
+    amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+  # Show all branches
+    br = branch -av
+  # Show the current branch name (usefull for shell prompts)
+    brname = !git branch | grep "^*" | awk '{ print $2 }'
+  # Delete a branch
+    brdel = branch -D
+  # Which files are receiving the most "love"
+    churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count,file"} {print $1 "," $2}'
+  # Show formatted list of changes
+    changes = "!f() { git log --pretty=format:'* %s' $1..$2; }; f"
+  # Commit... $ git ci
+    ci = commit
+  # Checkout
+    co = checkout
+  # View the log and diff for a commit (previous if no SHA1 provided)
+    details = log -n1 -p --format=fuller
+  # Save a repo as a tarball
+    export = archive -o latest.tar.gz -9 --prefix=latest/
+  # Unstage changes from the index
+    unstage = reset HEAD --
+  # View a pretty git log with branch tree
+    g = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  # Not sure what this does
+    in = pull --dry-run
+  # Return a list of commit SHA1s
+    l = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
+  # Not sure what this does
+    out = log --branches --not --remotes
+  # Remove deleted files
+    r = !git ls-files -z --deleted | xargs -0 git rm
+  # Return the repository's toplevel directory (usefull for shell prompts)
+    toplevel = rev-parse --show-toplevel
+  # Status
+    st = status
+  # Update all submodules
+    subup = submodule update --init
+  # List all tags
+    tags = tag -l
+  # Start a new local repository and perform initial commit
+    this = !git init && git add . && git commmit -m \"Initial commit.\"
+  # Thin out older metadata within the repository, reduceses filesystem footprint
+    trim = !git reflog expire --expire=now --all && git gc --prune=now
+
+# Now can do    $ git clone bb:<acct>/<repo>
+# or            $ git clone gh:<acct>/<repo>
+[url "https://bitbucket.org/"]
+    insteadOf = bb:
+[url "https://github.com/"]
+    insteadOf = gh:
+[url "https://gist.github.com/"]
+    insteadOf = gist:
+
+# Colored Output
+[color]
+    ui = true
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = red
+
+# OTHER TIPS
+
+# List all deleted files
+# git log --diff-filter=D --summary                  # With which commit they were deleted in
+# git log --diff-filter=D --summary | grep delete    # Without which commit they were deleted in
+
+# Process all deleted files
+# git ls-files -d | xargs git rm
+
+# List all untracked files
+#git ls-files --others --exclude-standard
+
+# Remove all untracked files
+# git clean -df
+
+# List ignored files
+# git ls-files . --ignored --exclude-standard --others
